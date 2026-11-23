@@ -50,13 +50,13 @@ header[data-testid="stHeader"] {
 
 /* Fondo principal de la aplicacion */
 .stApp {
-    background-color: #FFC0CB !important;
+    background-color: #0b132b !important;
     color: #f8fafc !important;
 }
 
 /* Barra lateral en negro puro */
 [data-testid="stSidebar"] {
-    background-color: #FFD700 !important;
+    background-color: #000000 !important;
     border-right: 1px solid #1c2541 !important;
 }
 [data-testid="stSidebar"] * {
@@ -191,12 +191,12 @@ header[data-testid="stHeader"] {
 /* Fondo principal de la aplicacion en Modo Claro */
 .stApp {
     background-color: #f4f7fb !important;
-    color: #800080 !important;
+    background-color: #f4f7fb !important;
 }
 
 /* Barra lateral en blanco puro */
 [data-testid="stSidebar"] {
-    background-color: #008000 !important;
+    background-color: #ffffff !important;
     border-right: 1px solid #cbd5e1 !important;
 }
 [data-testid="stSidebar"] * {
