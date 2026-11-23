@@ -123,6 +123,47 @@ section[data-testid="stFileUploadDropzone"] button:hover {
     color: #0b132b !important;
 }
 
+/* Archivo cargado en File Uploader - Modo Oscuro */
+[data-testid="stFileUploaderFile"],
+div[data-testid="stFileUploaderFile"] {
+    background-color: #131d36 !important;
+    border: 1px solid #38bdf8 !important;
+    border-radius: 10px !important;
+    color: #f8fafc !important;
+    padding: 8px 12px !important;
+}
+[data-testid="stFileUploaderFile"] svg,
+div[data-testid="stFileUploaderFileData"] svg,
+[data-testid="stFileUploaderFileData"] svg {
+    color: #38bdf8 !important;
+    fill: #38bdf8 !important;
+    stroke: #38bdf8 !important;
+}
+[data-testid="stFileUploaderFile"] *,
+div[data-testid="stFileUploaderFileData"] * {
+    color: #e2e8f0 !important;
+}
+[data-testid="stFileUploaderDeleteBtn"] button,
+[data-testid="stFileUploaderDeleteBtn"] svg {
+    color: #f87171 !important;
+    fill: #f87171 !important;
+}
+
+/* Alertas y avisos en Modo Oscuro */
+[data-testid="stAlert"] {
+    background-color: #0c281e !important;
+    border: 1px solid #10b981 !important;
+    border-radius: 10px !important;
+    color: #a7f3d0 !important;
+}
+[data-testid="stAlert"] * {
+    color: #a7f3d0 !important;
+}
+[data-testid="stAlert"] svg {
+    color: #34d399 !important;
+    fill: #34d399 !important;
+}
+
 /* Tablas con bordes redondeados y texto de alto contraste */
 [data-testid="stTable"] {
     border-radius: 12px !important;
@@ -260,6 +301,47 @@ header[data-testid="stHeader"] {
     color: #ffffff !important;
     border: none !important;
     border-radius: 8px !important;
+}
+
+/* Archivo cargado en File Uploader - Modo Claro (Evita icono negro) */
+[data-testid="stFileUploaderFile"],
+div[data-testid="stFileUploaderFile"] {
+    background-color: #ffffff !important;
+    border: 1px solid #bae6fd !important;
+    border-radius: 10px !important;
+    color: #0c4a6e !important;
+    padding: 8px 12px !important;
+}
+[data-testid="stFileUploaderFile"] svg,
+div[data-testid="stFileUploaderFileData"] svg,
+[data-testid="stFileUploaderFileData"] svg {
+    color: #0284c7 !important;
+    fill: #0284c7 !important;
+    stroke: #0284c7 !important;
+}
+[data-testid="stFileUploaderFile"] *,
+div[data-testid="stFileUploaderFileData"] * {
+    color: #0f172a !important;
+}
+[data-testid="stFileUploaderDeleteBtn"] button,
+[data-testid="stFileUploaderDeleteBtn"] svg {
+    color: #dc2626 !important;
+    fill: #dc2626 !important;
+}
+
+/* Alertas y avisos en Modo Claro */
+[data-testid="stAlert"] {
+    background-color: #ecfdf5 !important;
+    border: 1px solid #6ee7b7 !important;
+    border-radius: 10px !important;
+    color: #065f46 !important;
+}
+[data-testid="stAlert"] * {
+    color: #065f46 !important;
+}
+[data-testid="stAlert"] svg {
+    color: #059669 !important;
+    fill: #059669 !important;
 }
 
 /* Tablas con bordes redondeados y texto de alto contraste en Modo Claro */
@@ -580,9 +662,37 @@ def main():
                 datos_validados = logica.cargar_datos("datos/temp_upload.json", validar_7x24=True)
                 st.session_state["datos_actuales"] = datos_validados
                 st.session_state["matriz_editada"] = [fila[:] for fila in datos_validados["consumo"]]
-                st.sidebar.success(f"[OK] Archivo cargado: {datos_validados['edificio']}")
+                if es_modo_oscuro:
+                    st.sidebar.markdown(
+                        f"""<div style="background-color: #0c281e; border: 1px solid #10b981; border-radius: 10px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span style="color: #a7f3d0; font-size: 13px; font-weight: 700;">[OK] Archivo cargado: {datos_validados['edificio']}</span>
+                        </div>""",
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.sidebar.markdown(
+                        f"""<div style="background-color: #ecfdf5; border: 1px solid #10b981; border-radius: 10px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span style="color: #065f46; font-size: 13px; font-weight: 700;">[OK] Archivo cargado: {datos_validados['edificio']}</span>
+                        </div>""",
+                        unsafe_allow_html=True
+                    )
             except Exception as error_carga:
-                st.sidebar.error(f"[ERROR de formato]: {error_carga}")
+                if es_modo_oscuro:
+                    st.sidebar.markdown(
+                        f"""<div style="background-color: #2b1218; border: 1px solid #ef4444; border-radius: 10px; padding: 10px 14px; margin: 10px 0; color: #fca5a5; font-size: 13px;">
+                            <strong>[ERROR de formato]:</strong> {error_carga}
+                        </div>""",
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.sidebar.markdown(
+                        f"""<div style="background-color: #fef2f2; border: 1px solid #f87171; border-radius: 10px; padding: 10px 14px; margin: 10px 0; color: #991b1b; font-size: 13px;">
+                            <strong>[ERROR de formato]:</strong> {error_carga}
+                        </div>""",
+                        unsafe_allow_html=True
+                    )
 
         max_consumo = max(max(fila) for fila in matriz_activa) if matriz_activa else 50.0
         val_defecto = min(25.0, max_consumo)
