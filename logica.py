@@ -26,8 +26,11 @@ def cargar_datos(ruta_archivo, validar_7x24=True):
         FileNotFoundError: Si el archivo no existe.
         ValueError: Si la estructura, claves o tipos de datos son inválidos.
     """
-    with open(ruta_archivo, "r", encoding="utf-8") as archivo:
-        datos = json.load(archivo)
+    if isinstance(ruta_archivo, dict):
+        datos = ruta_archivo
+    else:
+        with open(ruta_archivo, "r", encoding="utf-8") as archivo:
+            datos = json.load(archivo)
 
     # 1. Validar que sea un diccionario
     if not isinstance(datos, dict):
