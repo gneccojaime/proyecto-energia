@@ -352,6 +352,78 @@ proyecto-energia, mi nombre de usuario gneccojaime, opcion 1
 ghp_************************************ [Token de acceso personal de GitHub]
 ```
 
+### Prompt 20
+- **Fecha y Hora:** 2026-11-23 16:54:31
+- **Texto original:**
+```text
+Me aparece esto [Captura de pantalla de share.streamlit.io/new con las opciones de despliegue]
+```
+
+### Prompt 21
+- **Fecha y Hora:** 2026-11-23 16:57:15
+- **Texto original:**
+```text
+listo
+```
+
+### Prompt 22
+- **Fecha y Hora:** 2026-11-23 17:02:50
+- **Texto original:**
+```text
+Ahora, como edito en vivo mi pagina con algo que me pida el profesor, por ejemplo otro umbral, otro color, o un dato nuevo.
+```
+
+### Prompt 23
+- **Fecha y Hora:** 2026-11-23 17:05:08
+- **Texto original:**
+```text
+como busco la linea en la pagina?
+```
+
+### Prompt 24
+- **Fecha y Hora:** 2026-11-23 17:09:18
+- **Texto original:**
+```text
+no me aparce [Captura de pantalla de GitHub edit mostrando búsqueda 0/0 con el buscador del navegador]
+```
+
+### Prompt 25
+- **Fecha y Hora:** 2026-11-23 17:10:18
+- **Texto original:**
+```text
+algo mas sencillo como cambia el color del fondo
+```
+
+### Prompt 26
+- **Fecha y Hora:** 2026-11-23 17:16:10
+- **Texto original:**
+```text
+los colores los busco con hex o que?
+```
+
+### Prompt 27
+- **Fecha y Hora:** 2026-11-23 17:25:00
+- **Texto original:**
+```text
+Ahora como cambio alos valores que ya tenai
+```
+
+### Prompt 28
+- **Fecha y Hora:** 2026-11-23 17:35:24
+- **Texto original:**
+```text
+AL usar el modo claro. En el apartado de panel administrativo, todo se ve muy bien, elimina la barra roja que esta debajo del mapa de calor, no se que significa eso. Al usar el tema oscuro todo se ve muy bien, en el panel administrativo, en la barra lateral donde dice parámetros de control al usar el tena oscuro el cuadrado donde se dice upload y 200MB per file . JSON, no cambia en consideración del tema oscuro
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
