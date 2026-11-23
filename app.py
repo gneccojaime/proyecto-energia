@@ -74,35 +74,53 @@ header[data-testid="stHeader"] {
 }
 
 .tarjeta-alerta {
-    background-color: #24141e;
-    border: 1px solid #dc2626;
-    border-left: 6px solid #ef4444;
+    background-color: #131d36;
+    border: 1px solid #273559;
     border-radius: 14px;
-    padding: 20px;
+    padding: 22px;
     margin-bottom: 22px;
-    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 /* Componente de subida de archivos (File Uploader) en Modo Oscuro */
-[data-testid="stFileUploader"] {
+[data-testid="stFileUploader"],
+[data-testid="stFileUploader"] section,
+[data-testid="stFileUploadDropzone"],
+[data-testid="stFileUploaderDropzone"],
+div[data-testid="stFileUploader"] > section,
+div[data-testid="stFileUploader"] section,
+div[data-testid="stFileUploadDropzone"],
+section[data-testid="stFileUploadDropzone"] {
     background-color: #0f182c !important;
     border: 1px dashed #38bdf8 !important;
     border-radius: 12px !important;
-    padding: 10px !important;
-}
-[data-testid="stFileUploadDropzone"] {
-    background-color: #0f182c !important;
     color: #f8fafc !important;
-    border: none !important;
 }
-[data-testid="stFileUploadDropzone"] * {
+[data-testid="stFileUploader"] *,
+[data-testid="stFileUploadDropzone"] *,
+[data-testid="stFileUploaderDropzone"] *,
+section[data-testid="stFileUploadDropzone"] * {
     color: #94a3b8 !important;
+    background-color: transparent !important;
 }
-[data-testid="stFileUploadDropzone"] button {
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploadDropzone"] small,
+section[data-testid="stFileUploadDropzone"] small {
+    color: #64748b !important;
+}
+[data-testid="stFileUploader"] button,
+[data-testid="stFileUploadDropzone"] button,
+section[data-testid="stFileUploadDropzone"] button {
     background-color: #1e293b !important;
     color: #38bdf8 !important;
     border: 1px solid #38bdf8 !important;
     border-radius: 8px !important;
+}
+[data-testid="stFileUploader"] button:hover,
+[data-testid="stFileUploadDropzone"] button:hover,
+section[data-testid="stFileUploadDropzone"] button:hover {
+    background-color: #38bdf8 !important;
+    color: #0b132b !important;
 }
 
 /* Tablas con bordes redondeados y texto de alto contraste */
@@ -191,7 +209,7 @@ header[data-testid="stHeader"] {
 /* Fondo principal de la aplicacion en Modo Claro */
 .stApp {
     background-color: #f4f7fb !important;
-    background-color: #f4f7fb !important;
+    color: #0f172a !important;
 }
 
 /* Barra lateral en blanco puro */
@@ -214,13 +232,12 @@ header[data-testid="stHeader"] {
 }
 
 .tarjeta-alerta {
-    background-color: #fee2e2;
-    border: 1px solid #f87171;
-    border-left: 6px solid #dc2626;
+    background-color: #e6eef8;
+    border: 1px solid #b8d0eb;
     border-radius: 14px;
-    padding: 20px;
+    padding: 22px;
     margin-bottom: 22px;
-    box-shadow: 0 3px 8px rgba(220, 38, 38, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Componente de subida de archivos (File Uploader) en Modo Claro */
@@ -644,16 +661,16 @@ def main():
         st.plotly_chart(fig_mapa, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
-        # Seccion de Umbral con bordes redondeados y tabla legible
-        clase_alerta = "tarjeta-alerta" if res_umbral["cantidad"] > 0 else "tarjeta-seccion"
-        st.markdown(f'<div class="{clase_alerta}">', unsafe_allow_html=True)
+        # Seccion de Umbral con bordes redondeados y estilo unificado
+        st.markdown('<div class="tarjeta-seccion">', unsafe_allow_html=True)
         st.markdown("#### Deteccion de Horas Criticas sobre el Umbral")
         if res_umbral["cantidad"] == 0:
             st.info(f"Ninguna hora supera el umbral configurado de {umbral_usuario:.2f} kWh.")
         else:
+            color_resalte = "#38bdf8" if es_modo_oscuro else "#0284c7"
             st.markdown(
-                f"<strong style='color: #ef4444;'>[ALERTA DE SOBRECONSUMO]</strong> Se registraron "
-                f"<strong>{res_umbral['cantidad']} hora(s)</strong> que superan el umbral de "
+                f"<span style='color: {color_resalte}; font-weight: 700;'>Registro de horas criticas:</span> "
+                f"Se detectaron <strong>{res_umbral['cantidad']} hora(s)</strong> que superan el umbral de "
                 f"<strong>{umbral_usuario:.2f} kWh</strong>:",
                 unsafe_allow_html=True
             )
