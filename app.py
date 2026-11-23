@@ -657,9 +657,7 @@ def main():
         if archivo_subido is not None:
             try:
                 contenido = json.load(archivo_subido)
-                with open("datos/temp_upload.json", "w", encoding="utf-8") as temp_file:
-                    json.dump(contenido, temp_file)
-                datos_validados = logica.cargar_datos("datos/temp_upload.json", validar_7x24=True)
+                datos_validados = logica.cargar_datos(contenido, validar_7x24=True)
                 st.session_state["datos_actuales"] = datos_validados
                 st.session_state["matriz_editada"] = [fila[:] for fila in datos_validados["consumo"]]
                 if es_modo_oscuro:
@@ -852,7 +850,17 @@ def main():
                     porcentaje_ahorro=ahorro_porcentaje
                 )
                 logica.guardar_resumen("datos/salida.json", resumen_salida)
+                st.session_state["ultimo_resumen_guardado"] = resumen_salida
                 st.success("[OK] Reporte guardado con exito en datos/salida.json")
+
+            if "ultimo_resumen_guardado" in st.session_state:
+                salida_bytes = json.dumps(st.session_state["ultimo_resumen_guardado"], indent=2, ensure_ascii=False).encode("utf-8")
+                st.download_button(
+                    label="Descargar datos/salida.json",
+                    data=salida_bytes,
+                    file_name="salida.json",
+                    mime="application/json"
+                )
 
         datos_tabla = {HORAS_DIA[h]: [matriz_activa[d][h] for d in range(7)] for h in range(24)}
         datos_tabla_con_dias = {"Dia": DIAS_SEMANA}
@@ -870,7 +878,10 @@ def main():
             fila_nueva = []
             for h in range(24):
                 col_nombre = HORAS_DIA[h]
-                valor_celda = float(tabla_editada[col_nombre][d])
+                try:
+                    valor_celda = float(tabla_editada[col_nombre][d])
+                except (ValueError, TypeError):
+                    valor_celda = float(matriz_activa[d][h])
                 fila_nueva.append(valor_celda)
             matriz_nueva.append(fila_nueva)
 
