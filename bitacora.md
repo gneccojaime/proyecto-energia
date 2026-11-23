@@ -316,3 +316,10 @@ si
 ```text
 todo esta guardado?, puedo cerrar visual?
 ```
+
+### Prompt 15
+- **Fecha y Hora:** 2026-11-23 17:35:24
+- **Texto original:**
+```text
+AL usar el modo claro. En el apartado de panel administrativo, todo se ve muy bien, elimina la barra roja que esta debajo del mapa de calor, no se que significa eso. Al usar el tema oscuro todo se ve muy bien, en el panel administrativo, en la barra lateral donde dice parámetros de control al usar el tena oscuro el cuadrado donde se dice upload y 200MB per file . JSON, no cambia en consideración del tema oscuro
+```
