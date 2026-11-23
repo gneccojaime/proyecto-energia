@@ -1,0 +1,128 @@
+================================================================================
+PROYECTO 1: MAPA DE CALOR DEL CONSUMO ENERGETICO DE UN EDIFICIO
+================================================================================
+Materia: Fundamentos de Programacion e Inteligencia Artificial
+Carrera: Ingenieria Energetica
+Profesor: Alex
+================================================================================
+
+1. DESCRIPCION GENERAL
+--------------------------------------------------------------------------------
+Este proyecto es una aplicacion web interactiva disenada para monitorear el
+consumo electrico (en kWh) de un edificio durante una semana (7 dias x 24 horas).
+Permite identificar picos de consumo, detectar anomalias horarias mediante un
+umbral configurable, calcular la hora mas costosa de cada dia, simular escenarios
+de ahorro energetico (%) y corregir datos en vivo sin alterar los archivos base.
+
+Ademas, incluye un modulo de auditoria automatizado para verificar el caso de
+prueba oficial del profesor Alex (matriz 3x4).
+
+
+2. ESTRUCTURA DE ARCHIVOS DEL PROYECTO
+--------------------------------------------------------------------------------
+Jueves_Proyecto_Final/
+|-- app.py                  -> Interfaz grafica interactiva con Streamlit y Plotly.
+|-- logica.py               -> Modulo de calculos en Python puro (sin pandas/numpy).
+|-- test_verificacion.py    -> Script de auditoria automatica para el caso 3x4.
+|-- requirements.txt        -> Lista de librerias necesarias (streamlit, plotly).
+|-- bitacora.md             -> Registro cronologico de prompts e interacciones.
+|-- README.md               -> Documentacion en formato Markdown para GitHub.
+|-- LEEME.txt               -> Este manual de uso y guia de despliegue en texto plano.
+`-- datos/
+    |-- entrada.json        -> Datos de consumo semanal (7x24), tarifa y edificio.
+    `-- salida.json         -> Reporte consolidado con la estructura oficial.
+
+
+3. REQUISITOS DEL SISTEMA
+--------------------------------------------------------------------------------
+- Python 3.9 o superior instalado.
+- Conexion a internet (para instalar librerias y desplegar en la nube).
+- Navegador web (Google Chrome, Microsoft Edge, Firefox, etc.).
+
+
+4. EJECUCION EN COMPUTADOR LOCAL (PASO A PASO)
+--------------------------------------------------------------------------------
+Abre una consola (PowerShell o CMD) en la carpeta del proyecto:
+
+Paso 4.1: (Recomendado) Crear y activar un entorno virtual
+    En Windows PowerShell:
+        python -m venv venv
+        .\venv\Scripts\activate
+
+Paso 4.2: Instalar las dependencias
+        pip install -r requirements.txt
+
+Paso 4.3: Ejecutar las pruebas del profesor Alex
+        python test_verificacion.py
+    (Debe confirmar que todas las pruebas pasaron con exito).
+
+Paso 4.4: Iniciar la aplicacion web
+        streamlit run app.py
+    El navegador se abrira automaticamente en: http://localhost:8501
+
+
+5. GUIA DE DESPLIEGUE EN LA NUBE (STREAMLIT COMMUNITY CLOUD)
+--------------------------------------------------------------------------------
+Para que tu profesor y companeros puedan acceder a tu aplicacion desde
+cualquier computador o celular mediante un enlace web publico, sigue estos pasos:
+
+METODO A: SUBIENDO LOS ARCHIVOS DESDE EL NAVEGADOR EN GITHUB
+(Recomendado para computadores de universidad o si no tienes Git instalado)
+
+Paso 5.1: Crear repositorio en GitHub
+    1. Ve a https://github.com e inicia sesion con tu cuenta.
+    2. Haz clic en el boton "New" (Nuevo repositorio).
+    3. Nombre del repositorio: proyecto-consumo-edificio
+    4. Asegurate de que este seleccionado en modo "Public" (Publico).
+    5. NO marques "Add a README file" (ya tenemos uno en la carpeta).
+    6. Haz clic en "Create repository".
+
+Paso 5.2: Subir los archivos del proyecto
+    1. En la pagina del repositorio recien creado, busca el texto:
+       "uploading an existing file" (subir un archivo existente) y dale clic.
+    2. Arrastra o selecciona desde tu carpeta "Jueves_Proyecto_Final" los siguientes
+       archivos y carpetas:
+         - app.py
+         - logica.py
+         - test_verificacion.py
+         - requirements.txt
+         - README.md
+         - LEEME.txt
+         - bitacora.md
+         - La carpeta "datos" con "entrada.json" y "salida.json"
+       (Nota: NO subas la carpeta "venv" ni "__pycache__").
+    3. En la parte inferior donde dice "Commit changes", haz clic en el boton verde.
+
+METODO B: SUBIENDO CON LA TERMINAL DE GIT (Si tienes Git instalado)
+    1. Abre la terminal en D:\Jueves_Proyecto_Final
+    2. Ejecuta los comandos:
+       git init
+       git add .
+       git commit -m "Entrega final Proyecto 1 - Consumo Edificio"
+       git branch -M main
+       git remote add origin https://github.com/TU_USUARIO/proyecto-consumo-edificio.git
+       git push -u origin main
+
+Paso 5.3: Conectar y publicar en Streamlit Community Cloud
+    1. Abre https://share.streamlit.io/ e inicia sesion con tu cuenta de GitHub.
+    2. Haz clic en el boton azul "Create app" o "New app".
+    3. Selecciona "I already have an app".
+    4. Completa el formulario de configuracion:
+         - Repository: TU_USUARIO/proyecto-consumo-edificio
+         - Branch: main
+         - Main file path: app.py
+    5. Haz clic en "Deploy" (Desplegar).
+    6. Espera entre 1 y 3 minutos mientras Streamlit instala las librerias.
+    7. ¡Listo! Obtendras una URL publica (ejemplo: https://tu-proyecto.streamlit.app)
+       que puedes compartir con el profesor Alex para calificar el proyecto.
+
+
+6. NOTAS DE AUDITORIA Y REGLAS DE LA MATERIA
+--------------------------------------------------------------------------------
+- Cero uso de Pandas o NumPy en la logica: todos los calculos en logica.py estan
+  programados con ciclos, listas, diccionarios y funciones puras de Python.
+- Los graficos estan desarrollados con Plotly para interactividad completa.
+- Se implemento soporte visual para Tema Oscuro (Noche) y Tema Claro (Dia).
+- El caso de verificacion 3x4 del profesor coincide al 100% con los resultados
+  oficiales de la catedra.
+================================================================================
