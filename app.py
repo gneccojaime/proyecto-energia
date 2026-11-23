@@ -8,6 +8,7 @@ import json
 import base64
 import os
 import streamlit as st
+import streamlit.components.v1 as components
 import plotly.graph_objects as go
 import logica
 
@@ -656,15 +657,20 @@ def main():
     col_nav1, col_nav2 = st.sidebar.columns(2)
     with col_nav1:
         st.markdown("""<div style="text-align: center; margin-bottom: 4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>""", unsafe_allow_html=True)
-        if st.button("Panel Administrador", key="btn_nav_admin"):
+        if st.button("Panel Administrador", key="btn_nav_admin", use_container_width=True):
             st.session_state["seccion_activa"] = "admin"
             st.rerun()
 
     with col_nav2:
         st.markdown("""<div style="text-align: center; margin-bottom: 4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>""", unsafe_allow_html=True)
-        if st.button("Casos de Prueba", key="btn_nav_tests"):
+        if st.button("Casos de Prueba", key="btn_nav_tests", use_container_width=True):
             st.session_state["seccion_activa"] = "tests"
             st.rerun()
+
+    st.markdown("""<div style="text-align: center; margin-top: 10px; margin-bottom: 4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>""", unsafe_allow_html=True)
+    if st.sidebar.button("📽️ Presentación Oficial", key="btn_nav_slides", use_container_width=True):
+        st.session_state["seccion_activa"] = "slides"
+        st.rerun()
 
     seccion = st.session_state["seccion_activa"]
 
@@ -1052,6 +1058,43 @@ def main():
             else:
                 st.error("[ERROR] Se encontraron diferencias en las pruebas.")
 
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    # -------------------------------------------------------------
+    # VISTA 3: PRESENTACION OFICIAL (DIAPOSITIVAS)
+    # -------------------------------------------------------------
+    elif seccion == "slides":
+        datos = st.session_state.get("datos_actuales")
+        edificio = datos.get("edificio", "Bloque A") if datos else "Bloque A"
+        tarifa = float(datos.get("tarifa", 850.0)) if datos else 850.0
+
+        renderizar_banner_paisaje_edificio(edificio, tarifa, es_modo_oscuro)
+
+        ruta_html = os.path.join(os.path.dirname(__file__), "presentacion.html")
+        html_slides = ""
+        if os.path.exists(ruta_html):
+            with open(ruta_html, "r", encoding="utf-8") as f:
+                html_slides = f.read()
+
+        st.markdown('<div class="tarjeta-seccion">', unsafe_allow_html=True)
+        col_s1, col_s2 = st.columns([3, 1])
+        with col_s1:
+            st.markdown("### 📽️ Diapositivas Oficiales de Sustentación")
+            st.caption("Usa las flechas del teclado (← / →) o los botones para navegar entre las 10 diapositivas.")
+        with col_s2:
+            if html_slides:
+                st.download_button(
+                    label="Descargar presentacion.html",
+                    data=html_slides,
+                    file_name="presentacion.html",
+                    mime="text/html",
+                    use_container_width=True
+                )
+
+        if html_slides:
+            components.html(html_slides, height=850, scrolling=True)
+        else:
+            st.warning("No se encontró el archivo presentacion.html en el repositorio.")
         st.markdown('</div>', unsafe_allow_html=True)
 
 
