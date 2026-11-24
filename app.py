@@ -52,7 +52,7 @@ header[data-testid="stHeader"] {
 
 /* Fondo principal de la aplicacion */
 .stApp {
-    background-color: #FFC0CB !important;
+    background-color: #0b132b !important;
     color: #f8fafc !important;
 }
 
