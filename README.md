@@ -130,3 +130,6 @@ El archivo `logica.py` fue disenado estrictamente con los conceptos de la clase:
 - Manipulacion de archivos con el modulo estandar `json`.
 - Cero uso de librerias avanzadas como Pandas o NumPy en la logica.
 - Compatibilidad con matrices de cualquier tamano ($N \times M$).
+
+
+https://proyecto-energia-mvr7fdfzhqonrdmkqkwo5e.streamlit.app/
